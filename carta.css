@@ -1,0 +1,49 @@
+body {
+  font-family: 'Comic Sans MS', cursive;
+  background-color: #ffe6f0;
+  text-align: center;
+  margin-top: 100px;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #d63384;
+}
+
+.btn {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  margin: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background-color: #ff66b2;
+  color: white;
+}
+
+#noBtn {
+  background-color: #999;
+  color: white;
+  position: absolute;
+}
+
+#note {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff0f5;
+  border: 2px solid #ff66b2;
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  font-size: 1.2em;
+  color: #d63384;
+  z-index: 1000;
+}
