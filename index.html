@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Me amas?</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 3em;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.3em;
+      margin: 10px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff66b2;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #888;
+      color: white;
+      position: absolute;
+    }
+
+    #note {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff0f6;
+      border: 2px solid #ff66b2;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-size: 1.2em;
+      color: #d63384;
+      z-index: 1000;
+    }
+
+    /* Corazones */
+    .corazon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: flotar 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .corazon::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .corazon::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Brillitos */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿Me amas?</h1>
+
+  <button class="btn" id="yesBtn">Sí 💖</button>
+  <button class="btn" id="noBtn" style="top: 60%; left: 45%;">No 💔</button>
+
+  <div id="note">¡Sabía que dirías que sí jiji, Hola mi niño bonito, paso a recordarte lo muchisimo que te amo y lo importante que eres para mi vida, desde que te conocí, mi mundo cambió. Tu sonrisa ilumina mis días y tu forma de ser me hace quererte cada vez más. 
+. Gracias por ser tú, por estar aquí conigo siempre, por brindarme toda tu confinza, no pararía de decirte cuanto te amo, no dejaré de hacerlo bebé, eres muy especial en mi vida, me di un poco de tiempito para poder hacer esto que ya desde hace mucho quieria hacerlo, pero no se me daba la oportunidad jiji, me gusta verte feliz siempre siempre y quiero que siempre nos tengamos en mente,  se que el apoyo mutuo siempre va a existir mi vida, te amo con todo mi ser, me encanta que eres un niño muy inteligente muy dedicado en todas las cositas que haces, me encanta tu forma de ser y la forma en la que eres conmigo, siempre voy a recordarte que tienes que dar lo mejor de ti y siempre voy a ayudarte en todo lo posible y lo imposible, al finla todo se puede lograr, se que podemos llegar muy lejos si nos lo proponemos y damos lo mejor para nosotros corazon, i love you bebe!'! 😍</div>
+
+  <!-- 🎵 Música de fondo -->
+  <audio id="bgMusic" src="C:\Users\abisa\Downloads\cancion.mp3.mp3" loop></audio>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const note = document.getElementById("note");
+    const music = document.getElementById("bgMusic");
+
+    // Botón "No" se mueve
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    // Botón "Sí"
+    yesBtn.addEventListener("click", () => {
+      note.style.display = "block";
+      music.play();
+
+      // Corazones flotantes
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("corazon");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+      }, 300);
+
+      // Brillitos flotantes
+      setInterval(() => {
+        const sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        sparkle.style.animationDuration = (Math.random() * 2 + 1) + "s";
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 3000);
+      }, 150);
+    });
+  </script>
+
+</body>
+</html>
